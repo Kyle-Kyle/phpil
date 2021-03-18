@@ -5,9 +5,12 @@ class Variable:
 
     class_id = 0
 
-    def __init__(self):
-        self.id = self.__class__.class_id
-        self.__class__.class_id += 1
+    def __init__(self, id=None):
+        if id:
+            self.id = id
+        else:
+            self.id = self.__class__.class_id
+            self.__class__.class_id += 1
 
     def __eq__(self, other):
         if not isinstance(other, Variable):

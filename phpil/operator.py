@@ -12,28 +12,25 @@ class Operator:
     num_temp_var = 0
     attributes = []
 
-    def __init__(self):
-        pass
-
     def __str__(self):
         #TODO: refactor this
         outstring = ""
         output = ""
         input = ""
 
-        for i in range(self.numOutputs):
+        for i in range(self.num_output):
             output += "out" + str(i) + ", "
 
-        if self.numOutputs > 0:
+        if self.num_output > 0:
             output = ''.join(output.rsplit(',', 1)) + "= "
 
-        for i in range(self.numInputs):
+        for i in range(self.num_input):
             input += "inp" + str(i) + ", "
 
-        if self.numInputs > 0:
+        if self.num_input > 0:
             input = ''.join(input.rsplit(',', 1)) + ""
 
-        return output + Opcode.opcodeList[self.opcode] + " " + input
+        return output + self.opcode.name + " " + input
 
 class Nop(Operator):
     opcode = Opcode.Nop
@@ -392,45 +389,7 @@ class Print(Operator):
     attributes = []
 
 ################################ operator grouping ###########################
-
-class Comparater:
-    equal               = "=="
-    strictEqual         = "==="
-    notEqual            = "!="
-    lessThan            = "<"
-    lessThanOrEqual     = "<="
-    greaterThan         = ">"
-    greaterThanOrEqual  = ">="
-
-    @staticmethod
-    def all():
-        return [Comparater.equal, Comparater.strictEqual, Comparater.notEqual, Comparater.lessThan, Comparater.lessThanOrEqual, Comparater.greaterThan, Comparater.greaterThanOrEqual]
-
-class UnaryOperator:
-    Inc         = "++"
-    Dec         = "--"
-    LogicalNot  = "!"
-    BitwiseNot  = "~"
-
-    @staticmethod
-    def all():
-        return [UnaryOperator.Inc, UnaryOperator.Dec, UnaryOperator.BitwiseNot, UnaryOperator.LogicalNot]
-
-class BinaryOperator:
-    Add     = "+"
-    Sub     = "-"
-    Mul     = "*"
-    Div     = "/"
-    Mod     = "%"
-    BitAnd  = "&"
-    BitOr   = "|"
-    LogicAnd= "&&"
-    LogicOr = "||"
-    Xor     = "^"
-    LShift  = "<<"
-    RShift  = ">>"
-
-    @staticmethod
-    def all():
-        return [BinaryOperator.Add, BinaryOperator.Sub, BinaryOperator.Mul, BinaryOperator.Div, BinaryOperator.Mod, BinaryOperator.BitAnd, BinaryOperator.BitOr, BinaryOperator.LogicAnd, BinaryOperator.LogicOr, BinaryOperator.Xor, BinaryOperator.LShift, BinaryOperator.RShift]
+comparaters = ["==", "===", "!=", "<", "<=", ">", ">="]
+unary_ops = ["++", "--", "!", "~"]
+binary_ops = ["+", "-", "*", "/", "%", "&", "|", "&&", "||", "^", "<<", ">>"]
 
